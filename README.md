@@ -77,10 +77,42 @@ frontend/
 
 ## Getting Started
 
+### Local Development
+
 1. Ensure you have Flutter installed
-2. Navigate to the frontend directory
+2. Navigate to the project directory
 3. Run `flutter pub get` to install dependencies
-4. Run `flutter run` to start the application
+4. Run `flutter run -d chrome` to start the application in Chrome
+
+### GitHub Pages Deployment
+
+This project is configured for automatic deployment to GitHub Pages. The website will be available at:
+**https://mathayokyara.github.io/zttwebsite/**
+
+#### Setup Instructions:
+
+1. **Enable GitHub Pages in your repository:**
+   - Go to your repository settings on GitHub
+   - Navigate to "Pages" in the left sidebar
+   - Under "Source", select "GitHub Actions"
+   - Save the changes
+
+2. **Automatic Deployment:**
+   - The GitHub Actions workflow (`.github/workflows/deploy.yml`) will automatically build and deploy your Flutter web app whenever you push to the `main` branch
+   - The workflow builds the Flutter web app with the correct base href (`/zttwebsite/`) for GitHub Pages
+   - Deployment typically takes 2-5 minutes
+
+3. **Manual Deployment (if needed):**
+   ```bash
+   flutter build web --base-href "/zttwebsite/" --release
+   ```
+   Then manually upload the `build/web` folder contents to the `gh-pages` branch
+
+#### Important Notes:
+
+- The base href is set to `/zttwebsite/` to match your repository name
+- The `.nojekyll` file ensures GitHub Pages doesn't process files with Jekyll
+- All assets and routes are configured to work correctly with the GitHub Pages subdirectory structure
 
 ## Screenshots
 
