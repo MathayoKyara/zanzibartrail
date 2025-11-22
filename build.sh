@@ -6,6 +6,7 @@ if ! command -v flutter &> /dev/null; then
   echo "Flutter not found. Installing Flutter..."
   
   # Download and extract Flutter
+  # Using a recent stable version - update this if needed
   FLUTTER_VERSION="3.24.0"
   FLUTTER_URL="https://storage.googleapis.com/flutter_infra_release/releases/stable/linux/flutter_linux_${FLUTTER_VERSION}-stable.tar.xz"
   

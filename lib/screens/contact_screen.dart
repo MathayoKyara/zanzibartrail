@@ -434,12 +434,13 @@ ${_nameController.text}
       };
 
       // Get current origin for CORS (required by EmailJS)
-      String origin = 'https://mathayokyara.github.io';
-      if (Uri.base.host.contains('localhost') ||
+      // Dynamically detect the origin from the current URL
+      String origin = 'http://localhost';
+      if (Uri.base.hasScheme && Uri.base.hasAuthority) {
+        origin = '${Uri.base.scheme}://${Uri.base.authority}';
+      } else if (Uri.base.host.contains('localhost') ||
           Uri.base.host.contains('127.0.0.1')) {
         origin = 'http://localhost';
-      } else if (Uri.base.hasScheme && Uri.base.hasAuthority) {
-        origin = '${Uri.base.scheme}://${Uri.base.authority}';
       }
 
       // Send email using EmailJS API
