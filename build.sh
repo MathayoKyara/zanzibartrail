@@ -5,6 +5,10 @@ set -e
 export FLUTTER_HOME="${FLUTTER_HOME:-$HOME/flutter}"
 export PATH="$FLUTTER_HOME/bin:$PATH"
 
+# Fix Git ownership issues
+export GIT_CONFIG_GLOBAL=/dev/null
+export GIT_CONFIG_SYSTEM=/dev/null
+
 # Install Flutter if not already available
 if ! command -v flutter &> /dev/null; then
   echo "Flutter not found. Installing Flutter..."
@@ -28,6 +32,16 @@ if ! command -v flutter &> /dev/null; then
   
   export PATH="$FLUTTER_HOME/bin:$PATH"
   
+  # Fix Git ownership in Flutter directory
+  if [ -d "$FLUTTER_HOME/.git" ]; then
+    echo "Fixing Git ownership in Flutter directory..."
+    cd "$FLUTTER_HOME"
+    git config --global --add safe.directory "$FLUTTER_HOME" || true
+    git config --local --unset-all core.fileMode || true
+    git config --local core.fileMode false || true
+    cd - > /dev/null
+  fi
+  
   # Accept licenses (skip Android licenses for web-only build)
   flutter doctor --android-licenses || echo "Skipping Android licenses (web-only build)"
   
@@ -35,10 +49,26 @@ if ! command -v flutter &> /dev/null; then
   flutter precache --web || echo "Precache warning (continuing anyway)"
 else
   echo "Flutter found. Using existing installation."
+  
+  # Fix Git ownership if Flutter is already installed
+  if [ -d "$FLUTTER_HOME/.git" ]; then
+    echo "Fixing Git ownership in existing Flutter installation..."
+    cd "$FLUTTER_HOME"
+    git config --global --add safe.directory "$FLUTTER_HOME" || true
+    git config --local core.fileMode false || true
+    cd - > /dev/null
+  fi
 fi
 
 # Return to project directory
 cd "$VERCEL_PROJECT_ROOT" || cd "$(dirname "$0")/.." || pwd
+
+# Fix Git ownership for project directory if needed
+if [ -d ".git" ]; then
+  echo "Fixing Git ownership for project directory..."
+  git config --global --add safe.directory "$(pwd)" || true
+  git config --local core.fileMode false || true
+fi
 
 # Verify Flutter installation
 echo "Verifying Flutter installation..."

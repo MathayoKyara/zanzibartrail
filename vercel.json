@@ -1,6 +1,5 @@
 {
     "version": 2,
-    "buildCommand": "bash build.sh || (echo 'Build script failed, trying direct Flutter commands...' && export PATH=\"$HOME/flutter/bin:$PATH\" && flutter pub get && flutter build web --release)",
     "outputDirectory": "build/web",
     "rewrites": [
         {
