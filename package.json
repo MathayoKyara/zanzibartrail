@@ -1,0 +1,13 @@
+{
+  "name": "zanzibar-trail-tours",
+  "version": "1.0.0",
+  "description": "Zanzibar Trail Tours - Flutter Web App",
+  "scripts": {
+    "build": "bash build.sh",
+    "vercel-build": "bash build.sh"
+  },
+  "engines": {
+    "node": ">=18.x"
+  }
+}
+
