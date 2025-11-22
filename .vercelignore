@@ -1,0 +1,51 @@
+# Flutter
+.dart_tool/
+.flutter-plugins
+.flutter-plugins-dependencies
+.packages
+.pub-cache/
+.pub/
+build/
+*.iml
+*.ipr
+*.iws
+.idea/
+
+# Android
+android/
+*.apk
+*.aab
+*.keystore
+
+# iOS
+ios/
+*.ipa
+*.app
+
+# macOS
+macos/
+
+# Linux
+linux/
+
+# Windows
+windows/
+
+# Test
+test/
+
+# Git
+.git/
+.gitignore
+
+# GitHub
+.github/
+
+# Documentation
+README.md
+DEPLOYMENT_GUIDE.md
+
+# Other
+*.log
+*.lock
+

@@ -105,11 +105,11 @@ class _ContactScreenState extends State<ContactScreen> {
                       _buildContactItem(
                         Icons.email,
                         'Email',
-                        'info@zanzibartrailtours.com',
+                        'ZanzibarTrailTours@gmail.com',
                         () async {
                           final Uri params = Uri(
                             scheme: 'mailto',
-                            path: 'info@zanzibartrailtours.com',
+                            path: 'ZanzibarTrailTours@gmail.com',
                             query: 'subject=Inquiry about Zanzibar Trail Tours',
                           );
                           if (await canLaunchUrl(params)) {
