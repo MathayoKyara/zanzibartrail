@@ -1,8 +1,8 @@
 import 'package:url_launcher/url_launcher.dart';
 
 class BookingService {
-  static const String adminEmail = 'mathayokyara@gmail.com';
-  static const String adminWhatsApp = '+255788687685';
+  static const String adminEmail = 'ZanzibarTrailTours@gmail.com';
+  static const String adminWhatsApp = '0675538957';
 
   /// Send booking request via WhatsApp
   static Future<bool> sendWhatsAppBooking(
@@ -10,7 +10,7 @@ class BookingService {
     try {
       final message = _formatWhatsAppMessage(bookingDetails);
       final whatsappUrl =
-          'https://wa.me/255788687685?text=${Uri.encodeComponent(message)}';
+          'https://wa.me/0675538957?text=${Uri.encodeComponent(message)}';
 
       if (await canLaunch(whatsappUrl)) {
         await launch(whatsappUrl);

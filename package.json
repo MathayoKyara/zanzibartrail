@@ -8,6 +8,8 @@
   },
   "engines": {
     "node": ">=18.x"
+  },
+  "dependencies": {
+    "-": "^0.0.1"
   }
 }
-

@@ -189,7 +189,29 @@ class _AboutScreenState extends State<AboutScreen> {
             SizedBox(width: 16),
             Expanded(
               child: _buildTeamMemberCard(
-                'assets/images/alltours/tech.jpg',
+                'assets/images/alltours/iddy.jpg',
+                'Director of Adventure & Exploration',
+                'Designing signature expeditions across Zanzibar and Tanzania',
+                Colors.orange[700]!,
+              ),
+            ),
+          ],
+        ),
+        SizedBox(height: 16),
+        Row(
+          children: [
+            Expanded(
+              child: _buildTeamMemberCard(
+                'assets/images/alltours/guider.jpeg',
+                'Tour Guider',
+                'Guiding guests through immersive cultural and wildlife journeys',
+                Colors.purple[700]!,
+              ),
+            ),
+            SizedBox(width: 16),
+            Expanded(
+              child: _buildTeamMemberCard(
+                'assets/images/alltours/tech2.jpg',
                 'Tech Officer',
                 'Ensuring seamless digital experiences for our guests',
                 Colors.green[700]!,

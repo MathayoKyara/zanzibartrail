@@ -605,7 +605,7 @@ class _EnhancedBookingScreenState extends State<EnhancedBookingScreen> {
 
   void _launchWhatsApp() {
     final whatsappUrl =
-        'https://wa.me/255788687685?text=Hello, I would like to make a booking inquiry.';
+        'https://wa.me/0675538957?text=Hello, I would like to make a booking inquiry.';
     _launchURL(whatsappUrl);
   }
 

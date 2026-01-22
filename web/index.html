@@ -1,7 +1,8 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <!--
+<html lang="en">
+
+<head>
+  <!--
     If you are serving your web app in a path other than the root, change the
     href value below to reflect the base path you are serving from.
 
@@ -14,27 +15,56 @@
     This is a placeholder for base href that will be replaced by the value of
     the `--base-href` argument provided to `flutter build`.
   -->
-    <base href="/">
+  <base href="/">
 
-    <meta charset="UTF-8">
-    <meta content="IE=Edge" http-equiv="X-UA-Compatible">
-    <meta name="description" content="Zanzibar Trail Tours - Discover amazing tours, safaris, and travel experiences in Zanzibar and Tanzania. Book your adventure today!">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="keywords" content="Zanzibar, Tanzania, Tours, Safaris, Travel, Stone Town, Spice Farm, Ngorongoro, Serengeti">
+  <meta charset="UTF-8">
+  <meta content="IE=Edge" http-equiv="X-UA-Compatible">
+  <meta name="description"
+    content="Zanzibar Trail Tours - Discover amazing tours, safaris, and travel experiences in Zanzibar and Tanzania. Book your adventure today!">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="keywords"
+    content="Zanzibar, Tanzania, Tours, Safaris, Travel, Stone Town, Spice Farm, Ngorongoro, Serengeti">
 
-    <!-- iOS meta tags & icons -->
-    <meta name="mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black">
-    <meta name="apple-mobile-web-app-title" content="zanzibar_trail_tours">
-    <link rel="apple-touch-icon" href="icons/Icon-192.png">
+  <!-- iOS meta tags & icons -->
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="apple-mobile-web-app-title" content="Zanzibar Trail Tours">
+  <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="icons/apple-touch-icon.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="icons/apple-touch-icon.png">
+  <link rel="icon" sizes="16x16" href="icons/favicon-16x16.png">
+  <link rel="icon" sizes="32x32" href="icons/favicon-32x32.png">
+  <link rel="shortcut icon" href="icons/favicon.ico">
 
-    <!-- Favicon -->
-    <link rel="icon" type="image/png" href="favicon.png" />
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="icons/favicon-32x32.png" />
+  <link rel="icon" type="image/x-icon" href="icons/favicon.ico" />
 
-    <title>Zanzibar Trail Tours - Your Gateway to Zanzibar & Tanzania</title>
-    <link rel="manifest" href="manifest.json">
-  </head>
-  <body>
-    <script src="flutter_bootstrap.js" async></script>
-  </body>
+  <title>Zanzibar Trail Tours - Your Gateway to Zanzibar & Tanzania</title>
+  <link rel="manifest" href="manifest.json">
+</head>
+
+<body>
+  <script>
+    // GitHub Pages SPA redirect shim to preserve client-side routes.
+    (function (l) {
+      if (l.search[1] === '/') {
+        var decoded = l.search
+          .slice(1)
+          .split('&')
+          .map(function (s) {
+            return s.replace(/~and~/g, '&');
+          })
+          .join('?');
+        window.history.replaceState(
+          null,
+          null,
+          l.pathname.slice(0, -1) + decoded + l.hash
+        );
+      }
+    })(window.location);
+  </script>
+  <script src="flutter_bootstrap.js" async></script>
+</body>
+
 </html>

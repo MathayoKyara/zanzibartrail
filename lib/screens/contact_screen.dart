@@ -121,11 +121,11 @@ class _ContactScreenState extends State<ContactScreen> {
                       _buildContactItem(
                         Icons.phone,
                         'Phone',
-                        '+255 675 538 957',
+                        '0675538957',
                         () async {
                           if (await canLaunchUrl(
-                              Uri.parse('tel:+255675538957'))) {
-                            await launchUrl(Uri.parse('tel:+255675538957'));
+                              Uri.parse('tel:0675538957'))) {
+                            await launchUrl(Uri.parse('tel:0675538957'));
                           }
                         },
                       ),
@@ -133,12 +133,12 @@ class _ContactScreenState extends State<ContactScreen> {
                       _buildContactItem(
                         Icons.chat,
                         'WhatsApp',
-                        '+255 675 538 957',
+                        '0675538957',
                         () async {
                           if (await canLaunchUrl(
-                              Uri.parse('https://wa.me/255675538957'))) {
+                              Uri.parse('https://wa.me/0675538957'))) {
                             await launchUrl(
-                                Uri.parse('https://wa.me/255675538957'));
+                                Uri.parse('https://wa.me/0675538957'));
                           }
                         },
                       ),
@@ -150,9 +150,9 @@ class _ContactScreenState extends State<ContactScreen> {
                         () async {
                           // Open maps
                           if (await canLaunchUrl(
-                              Uri.parse('https://goo.gl/maps/example'))) {
+                              Uri.parse('https://maps.app.goo.gl/zQ6dXSA7jNW1Rnow6'))) {
                             await launchUrl(
-                                Uri.parse('https://goo.gl/maps/example'));
+                                Uri.parse('https://maps.app.goo.gl/zQ6dXSA7jNW1Rnow6'));
                           }
                         },
                       ),
