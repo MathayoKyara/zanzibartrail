@@ -1,38 +1,42 @@
 #!/bin/bash
 set -e
 
-echo "Starting Flutter build process..."
+echo "Starting simple Flutter build..."
 
-# Set up environment
-export PATH="$PATH:/usr/local/bin:/usr/bin:/bin"
+# Completely reset environment
+export PATH="/usr/local/bin:/usr/bin:/bin"
+unset FLUTTER_HOME
+unset FLUTTER_ROOT
+export GIT_CONFIG_GLOBAL=/dev/null
+export GIT_CONFIG_SYSTEM=/dev/null
 export HOME=/tmp
 
-# Try to use system Flutter first
-if command -v flutter &> /dev/null; then
-    echo "Using system Flutter"
-    flutter config --enable-web
-else
-    echo "Flutter not found, attempting to install..."
-    
-    # Install Flutter to /tmp
-    cd /tmp
-    curl -L "https://storage.googleapis.com/flutter_infra_release/releases/stable/linux/flutter_linux_3.24.0-stable.tar.xz" | tar xJ
-    export PATH="/tmp/flutter/bin:$PATH"
-    flutter config --enable-web
-fi
+# Clean up any existing Flutter
+cd /tmp
+rm -rf flutter || true
 
-# Return to project directory
-cd "$VERCEL_PROJECT_ROOT" || pwd
+# Download Flutter
+echo "Downloading Flutter..."
+curl -L "https://storage.googleapis.com/flutter_infra_release/releases/stable/linux/flutter_linux_3.24.0-stable.tar.xz" | tar xJ
 
-echo "Current directory: $(pwd)"
-echo "Flutter version:"
-flutter --version
+# Set up environment
+export PATH="/tmp/flutter/bin:$PATH"
+export FLUTTER_HOME="/tmp/flutter"
 
-echo "Getting dependencies..."
+# Configure
+flutter config --enable-web
+
+# Go to project
+cd "$VERCEL_PROJECT_ROOT" || {
+  echo "ERROR: Project directory not found"
+  exit 1
+}
+
+echo "Project directory: $(pwd)"
+
+# Get dependencies and build
 flutter pub get
-
-echo "Building for web..."
 flutter build web --release
 
-echo "Build completed!"
-ls -la build/web/
+echo "Build successful!"
+ls build/web/

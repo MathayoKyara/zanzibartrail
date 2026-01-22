@@ -1,45 +1,43 @@
 #!/bin/bash
 set -e
 
-# Set environment variables to avoid Git ownership issues
-export GIT_CONFIG_GLOBAL=/tmp/gitconfig
-export GIT_CONFIG_SYSTEM=/tmp/gitconfig
+echo "Starting Flutter build process..."
+
+# Completely bypass any existing Flutter installations
+export PATH="/usr/local/bin:/usr/bin:/bin"
+unset FLUTTER_HOME
+unset FLUTTER_ROOT
+
+# Set environment to avoid all Git issues
+export GIT_CONFIG_GLOBAL=/dev/null
+export GIT_CONFIG_SYSTEM=/dev/null
 export HOME=/tmp
 
-# Create a temporary git config to avoid ownership issues
-touch $GIT_CONFIG_GLOBAL
-touch $GIT_CONFIG_SYSTEM
+# Install Flutter in a clean location
+echo "Installing fresh Flutter..."
+cd /tmp
+rm -rf flutter 2>/dev/null || true
 
-# Install Flutter if not available
-if ! command -v flutter &> /dev/null; then
-  echo "Installing Flutter..."
-  
-  # Download Flutter to temporary directory
-  mkdir -p /tmp/flutter
-  cd /tmp
-  
-  # Use a stable Flutter version
-  FLUTTER_VERSION="3.24.0"
-  FLUTTER_URL="https://storage.googleapis.com/flutter_infra_release/releases/stable/linux/flutter_linux_${FLUTTER_VERSION}-stable.tar.xz"
-  
-  echo "Downloading Flutter ${FLUTTER_VERSION}..."
-  curl -L "$FLUTTER_URL" | tar xJ
-  
-  # Add Flutter to PATH
-  export PATH="/tmp/flutter/bin:$PATH"
-  
-  # Configure Flutter for web
-  flutter config --enable-web
-  flutter precache --web
-else
-  echo "Flutter found, using existing installation"
-  flutter config --enable-web
-fi
+# Download and extract Flutter
+FLUTTER_VERSION="3.24.0"
+echo "Downloading Flutter ${FLUTTER_VERSION}..."
+curl -L "https://storage.googleapis.com/flutter_infra_release/releases/stable/linux/flutter_linux_${FLUTTER_VERSION}-stable.tar.xz" | tar xJ
+
+# Set up Flutter environment
+export PATH="/tmp/flutter/bin:$PATH"
+export FLUTTER_HOME="/tmp/flutter"
+
+# Configure Flutter
+flutter config --enable-web
+flutter precache --web --no-android
 
 # Return to project directory
-cd "$VERCEL_PROJECT_ROOT" || pwd
+cd "$VERCEL_PROJECT_ROOT" || {
+  echo "ERROR: Could not find project directory"
+  exit 1
+}
 
-# Verify Flutter installation
+echo "Current directory: $(pwd)"
 echo "Flutter version:"
 flutter --version
 
