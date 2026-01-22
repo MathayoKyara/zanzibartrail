@@ -4,7 +4,7 @@
   "description": "Zanzibar Trail Tours - Flutter Web App",
   "scripts": {
     "build": "chmod +x build.sh && bash build.sh",
-    "vercel-build": "chmod +x build-final.sh && bash build-final.sh || (chmod +x build.sh && bash build.sh) || (chmod +x build-simple.sh && bash build-simple.sh) || (chmod +x build-ultra.sh && bash build-ultra.sh) || (chmod +x build-minimal.sh && bash build-minimal.sh)"
+    "vercel-build": "chmod +x build-direct.sh && bash build-direct.sh"
   },
   "engines": {
     "node": ">=18.x"
