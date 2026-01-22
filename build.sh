@@ -3,29 +3,28 @@ set -e
 
 echo "Starting Flutter build process..."
 
-# Completely bypass any existing Flutter installations
+# Use a completely different directory name to avoid Vercel conflicts
 export PATH="/usr/local/bin:/usr/bin:/bin"
 unset FLUTTER_HOME
 unset FLUTTER_ROOT
-
-# Set environment to avoid all Git issues
 export GIT_CONFIG_GLOBAL=/dev/null
 export GIT_CONFIG_SYSTEM=/dev/null
 export HOME=/tmp
 
-# Install Flutter in a clean location
-echo "Installing fresh Flutter..."
+# Install Flutter in a unique directory
+echo "Installing Flutter to custom location..."
 cd /tmp
-rm -rf flutter 2>/dev/null || true
+rm -rf flutter_build 2>/dev/null || true
+mkdir -p flutter_build
 
 # Download and extract Flutter
 FLUTTER_VERSION="3.24.0"
 echo "Downloading Flutter ${FLUTTER_VERSION}..."
-curl -L "https://storage.googleapis.com/flutter_infra_release/releases/stable/linux/flutter_linux_${FLUTTER_VERSION}-stable.tar.xz" | tar xJ
+curl -L "https://storage.googleapis.com/flutter_infra_release/releases/stable/linux/flutter_linux_${FLUTTER_VERSION}-stable.tar.xz" | tar xJ -C flutter_build --strip-components=1
 
 # Set up Flutter environment
-export PATH="/tmp/flutter/bin:$PATH"
-export FLUTTER_HOME="/tmp/flutter"
+export PATH="/tmp/flutter_build/bin:$PATH"
+export FLUTTER_HOME="/tmp/flutter_build"
 
 # Configure Flutter
 flutter config --enable-web
